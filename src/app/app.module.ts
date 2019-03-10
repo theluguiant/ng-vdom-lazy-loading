@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { VDomModule } from 'ng-vdom';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { GitUsers } from './services/gituser.service';
 
 @NgModule({
   declarations: [
@@ -10,9 +13,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    VDomModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GitUsers],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
