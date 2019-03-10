@@ -1,27 +1,20 @@
-# Testvdom
+# Descrición 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
+Ejemplo de uso ng-vdom y lazy-loading, para la fecha actual 10/03/2019 no se recomienda usar ng-vdom por lo crudo que esta este proyecto, si es necesario que use el dom virtual considere usar react, para configurar siga los pasos de ng-vdom o use de ejemplo el tsconfig.json de este ejemplo, este proyecto se crea con la intención de buscar técnicas, librerías o estrtegias para mejorar el performances de los proyectos angular a desarrollar
 
-## Development server
+# Link ng-vdom
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+https://github.com/trotyl/ng-vdom
 
-## Code scaffolding
+# Nota 10/03/2019:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Los archivos .component son de extencion .tsx, s necesita usar un constructor usando ng-vdom hagalo de la siguiente manera 
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+ constructor(
+    private readonly _gitusers: GitUsers,
+    protected __injector: Injector
+  ) { 
+      super(__injector);
+  }
+```
