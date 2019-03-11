@@ -1,11 +1,13 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { createElement as h, Renderable } from 'ng-vdom';
 import { GitUsers } from '../../services/gituser.service';
 
 @Component({
   selector: 'app-order-list',
   template: '',
-  styleUrls: ['./order-list.component.scss']
+  styleUrls: ['./order-list.component.scss'],
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderListComponent extends Renderable implements OnInit {
 
@@ -14,10 +16,16 @@ export class OrderListComponent extends Renderable implements OnInit {
   
   constructor(
     private readonly _gitusers: GitUsers,
-    protected __injector: Injector
+    protected __injector: Injector,
+    private cdr: ChangeDetectorRef
   ) { 
       super(__injector);
   }
+
+  ngAfterViewInit() {
+    this.cdr.detach(); //desactiva la detección de cambios
+  }
+
   
   ngOnInit(): void {
     this.getUsers();
@@ -27,6 +35,7 @@ export class OrderListComponent extends Renderable implements OnInit {
     this._gitusers.getUsers().subscribe(
       response => {
         this.items = response;
+        this.cdr.detectChanges(); 
       },
       error => {
        console.log(error);
